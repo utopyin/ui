@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
@@ -24,6 +26,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.7",
     "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20.19.9",
@@ -32,12 +35,11 @@
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "ultracite": "7.3.2"
   },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.1.2",
-      "@types/react-dom": "19.1.2"
-    }
+  "overrides": {
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2"
   }
 }
