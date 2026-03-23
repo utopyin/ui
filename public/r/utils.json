@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "dependencies": [
+    "tailwind-variants"
+  ],
+  "files": [
+    {
+      "path": "registry/lib/utils.ts",
+      "content": "import { cn } from \"tailwind-variants\";\n\nexport const composeBaseUI = <State>(\n  className: string,\n  otherClassName?: string | ((state: State) => string | undefined) | undefined\n) => {\n  if (typeof otherClassName === \"function\") {\n    return (state: State) => cn(className, otherClassName(state));\n  }\n  return cn(className, otherClassName);\n};\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

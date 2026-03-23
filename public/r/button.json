@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "dependencies": [
+    "@base-ui/react",
+    "tailwind-variants"
+  ],
+  "registryDependencies": [
+    "https://ui.utopy.sh/r/focus-ring.json",
+    "https://ui.utopy.sh/r/utils.json",
+    "https://ui.utopy.sh/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/button.tsx",
+      "content": "import { Button as PrimitiveButton } from \"@base-ui/react/button\";\nimport { tv, type VariantProps } from \"tailwind-variants\";\nimport { composeBaseUI } from \"@/registry/lib/utils\";\nimport { focusRingBaseVariant } from \"@/registry/ui/focus-ring\";\n\nconst buttonVariants = tv({\n  slots: {\n    base: [\n      focusRingBaseVariant(),\n      \"inline-flex items-center font-medium outline-offset-2 transition-[background-color,scale,box-shadow] duration-100 active:scale-97\",\n    ],\n    icon: \"flex size-4.5 shrink-0 items-center justify-center\",\n    text: \"font-medium text-sm\",\n  },\n  variants: {\n    variant: {\n      accent: {\n        base: [\n          \"bg-linear-to-b from-accent-300 to-accent-600 text-accent-foreground hover:from-accent-600\",\n          \"shadow-[0_1px_3px_rgb(0_0_0_/_0.20),0px_0px_0px_1px_var(--color-accent-700),inset_0px_1px_0px_rgba(255,_255,_255,_0.2)]\",\n        ],\n        text: \"text-shadow-xs\",\n        icon: \"drop-shadow-[0_1px_2px_var(--tw-drop-shadow-color,rgb(0_0_0_/_0.20))]\",\n      },\n      outline: {\n        base: [\n          \"bg-outline text-foreground hover:bg-outline-hover\",\n          \"shadow-[0_1px_3px_rgb(0_0_0_/_0.10),0px_0px_0px_1px_rgb(0_0_0_/_0.08)]\",\n          \"dark:shadow-[0_1px_3px_rgb(0_0_0_/_0.20),0px_0px_0px_1px_rgb(255_255_255_/_0.2)]\",\n        ],\n        icon: \"text-muted-foreground\",\n      },\n      secondary: {\n        base: [\n          \"bg-secondary text-foreground shadow-[0_1px_3px_rgb(0_0_0_/_0.05),0_0_0_1px_rgb(0_0_0_/_0.04),inset_0_-10px_5px_-7px_rgb(0_0_0_/_0.04)]\",\n          \"hover:shadow-[0_1px_3px_rgb(0_0_0_/_0.05),0_0_0_1px_rgb(0_0_0_/_0.04)]\",\n          \"dark:shadow-[0_1px_3px_rgb(0_0_0_/_0.2),0_0_0_1px_rgb(0_0_0_/_0.2),inset_0_1px_2px_-1px_rgb(255_255_255_/_0.2),inset_0_-9px_8px_-8px_rgb(0_0_0_/_0.3)]\",\n          \"dark:hover:shadow-[0_1px_3px_rgb(0_0_0_/_0.2),0_0_0_1px_rgb(0_0_0_/_0.2),inset_0_1px_2px_-1px_rgb(255_255_255_/_0.2)]\",\n        ],\n        icon: \"text-muted-foreground\",\n      },\n    },\n    size: {\n      sm: { base: \"gap-px rounded-sm px-1.5 py-1\", text: \"px-0.5\" },\n      md: { base: \"gap-1 rounded-sm px-2 py-1.5\", text: \"px-0.5\" },\n      lg: { base: \"gap-0.5 rounded-md px-2.5 py-2\", text: \"px-1\" },\n    },\n  },\n  defaultVariants: { variant: \"secondary\", size: \"md\" },\n});\n\ntype ButtonProps = (\n  | {\n      leftIcon?: React.ReactNode;\n      rightIcon?: undefined;\n    }\n  | {\n      leftIcon?: undefined;\n      rightIcon?: React.ReactNode;\n    }\n) &\n  (\n    | { text?: string; children?: undefined }\n    | { text?: undefined; children?: React.ReactNode }\n  ) &\n  Omit<\n    React.ComponentProps<typeof PrimitiveButton> &\n      VariantProps<typeof buttonVariants>,\n    \"children\"\n  >;\n\nexport function Button({\n  children,\n  className,\n  variant,\n  size,\n  text,\n  leftIcon,\n  rightIcon,\n  ...props\n}: ButtonProps) {\n  const {\n    base: baseVariants,\n    icon: iconVariants,\n    text: textVariants,\n  } = buttonVariants({ variant, size });\n\n  return (\n    <span className=\"p-px\">\n      <PrimitiveButton\n        className={composeBaseUI(baseVariants(), className)}\n        {...props}\n      >\n        {leftIcon && <span className={iconVariants()}>{leftIcon}</span>}\n        {children ?? <span className={textVariants()}>{text}</span>}\n        {rightIcon && <span className={iconVariants()}>{rightIcon}</span>}\n      </PrimitiveButton>\n    </span>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

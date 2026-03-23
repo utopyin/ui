@@ -1,4 +1,6 @@
+import { IconFaceSmileFill12 } from "nucleo-ui-fill-12";
 import { OpenInV0Button } from "@/components/open-in-v0-button";
+import { Button } from "@/registry/ui/button";
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
 
@@ -12,15 +14,18 @@ export default function Home() {
         </p>
       </header>
       <main className="flex flex-1 flex-col gap-8">
-        <div className="relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4">
+        <div className="relative flex min-h-[450px] flex-col gap-4 rounded-lg border border-border p-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-muted-foreground text-sm sm:pl-3">
-              A simple hello world component
-            </h2>
+            <h2 className="text-muted-foreground text-sm sm:pl-3">A button</h2>
             <OpenInV0Button className="w-fit" name="hello-world" />
           </div>
           <div className="relative flex min-h-[400px] items-center justify-center">
-            {/* <HelloWorld /> */}
+            <Button
+              leftIcon={<IconFaceSmileFill12 />}
+              size="md"
+              text="Submit"
+              variant="secondary"
+            />
           </div>
         </div>
 
